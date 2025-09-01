@@ -15,7 +15,7 @@ exec_always --no-startup-id sh -c 'sleep 0.5; feh --bg-fill "$HOME/Pictures/imag
 
 
 # ---------- Apps ----------
-set $term alacritty
+set $term kitty
 set $browser firefox
 set $menu rofi -show drun -show-icons
 
@@ -116,6 +116,12 @@ bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
+
+
+
+# Touchpad settings
+exec --no-startup-id xinput set-prop "ELAN06FA:00 04F3:3280 Touchpad" "libinput Tapping Enabled" 1
+exec --no-startup-id xinput set-prop "ELAN06FA:00 04F3:3280 Touchpad" "libinput Accel Speed" 0.3
 
 # ---------- Screenshot ----------
 bindsym $mod+Shift+s exec flameshot gui
