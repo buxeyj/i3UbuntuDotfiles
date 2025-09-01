@@ -24,13 +24,15 @@ alias please='sudo $(fc -ln -1)'
 eval "$(starship init zsh)"
 # Allows me to seach my entire system
 
-# Default fzf = only current directory
-export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude .git'
-
-# Search entire $HOME and open in nvim
-fhome() {
-  local file
-  file=$(fd --type f --hidden --exclude .git . $HOME | fzf) && nvim "$file"
+# Ctrl+F: fuzzy search all files in $HOME and open in Neovim
+fvim_all_widget() {
+  local sel
+  sel="$(fd --type f --hidden --follow --exclude .git . "$HOME" 2>/dev/null | fzf)" || return
+  nvim "$sel"
+  zle reset-prompt
 }
+zle -N fvim_all_widget
+bindkey '^f' fvim_all_widget
+
 
 
