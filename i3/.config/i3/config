@@ -8,7 +8,6 @@ font pango:JetBrainsMono Nerd Font 11
 
 # --- Apps ---
 set $term kitty
-set $browser firefox
 
 # Run display setup
 exec_always --no-startup-id ~/.screenlayout/defaultsetup.sh
@@ -31,7 +30,7 @@ workspace_auto_back_and_forth yes
 
 
 # Borders for all tiled windows
-new_window pixel 3
+new_window pixel 4
 
 # Borders for floating windows (none by default)
 new_float none
@@ -51,8 +50,7 @@ client.unfocused        #333333    #222222    #888888  #292d2e    #222222
 bindsym $mod+Return exec $term
 bindsym $mod+Shift+q kill
 
-# Reload / restart / exit
-bindsym $mod+Shift+c reload
+# / restart / 
 bindsym $mod+Shift+r restart
 
 # Focus (hjkl)
