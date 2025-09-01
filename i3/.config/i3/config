@@ -29,7 +29,7 @@ hide_edge_borders both
 # Apps
 bindsym $mod+Return exec $term
 bindsym $mod+space exec $menu
-bindsym $mod+Shift+b exec $browser
+# bindsym $mod+Shift+b exec $browser
 bindsym $mod+Shift+q kill
 
 # Reload / restart / exit
@@ -64,7 +64,6 @@ set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
-set $ws10 "10"
 
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
@@ -75,7 +74,6 @@ bindsym $mod+6 workspace $ws6
 bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
-bindsym $mod+0 workspace $ws10
 
 bindsym $mod+Shift+1 move container to workspace $ws1; workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2; workspace $ws2
@@ -126,9 +124,29 @@ bindsym $mod+Shift+s exec flameshot gui
 
 # ---------- Bar ----------
 bar {
-    status_command i3status
-    position bottom
-    tray_output primary
-    font pango:JetBrainsMono Nerd Font 11
+    status_command i3blocks
+    position top
+    height 32
+    tray_output none
+    separator_symbol " "
+    font pango:JetBrainsMono Nerd Font 15
+
+    mode hide
+    hidden_state hide
+    modifier Mod4
+
+colors {
+        background #1d1f21
+        statusline #ffffff
+        separator  #666666
+
+        focused_workspace  #ffffff #000000 #ffffff
+        active_workspace   #aaaaaa #000000 #aaaaaa
+        inactive_workspace #666666 #000000 #666666
+        urgent_workspace   #ff0000 #000000 #ff0000
+    }
 }
+
+bindsym $mod+0 bar mode toggle
+
 
