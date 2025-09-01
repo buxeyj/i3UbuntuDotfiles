@@ -114,6 +114,13 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 
+# Remove Borders from windows
+
+new_window pixel 1
+new_float normal
+for_window [class=".*"] border pixel 1
+
+
 
 # Touchpad settings
 exec --no-startup-id xinput set-prop "ELAN06FA:00 04F3:3280 Touchpad" "libinput Tapping Enabled" 1
