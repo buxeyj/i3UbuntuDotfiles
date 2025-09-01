@@ -134,7 +134,7 @@ bar {
     height 32
     tray_output none
     separator_symbol " "
-    font pango:JetBrainsMono Nerd Font 12
+    font pango:Iosevka Nerd Font 12
 
     mode hide
     hidden_state hide
