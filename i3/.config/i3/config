@@ -20,6 +20,10 @@ exec_always --no-startup-id feh --no-fehbg --bg-fill "$HOME/Pictures/image3.png"
 
 exec_always --no-startup-id sh -c 'pkill -x picom >/dev/null 2>&1 || true; /usr/bin/picom --backend glx --config "$HOME/.config/picom/picom.conf"'
 
+# ulauncher loading
+exec --no-startup-id ulauncher --hide-window
+bindsym $mod+space exec --no-startup-id ulauncher-toggle
+
 # --- Window behavior ---O
 focus_follows_mouse no
 mouse_warping none
