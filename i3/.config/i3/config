@@ -1,42 +1,54 @@
 # =========================
-# ULTIMATE i3 CONFIG
+# ULTIMATE i3 CONFIG (tidy)
 # =========================
 
-# Set Mod key to Alt
-set $mod Mod1
+# --- Core ---
+set $mod Mod1                             
 font pango:JetBrainsMono Nerd Font 11
 
-# Displays + Wallpaper + Picom
-exec_always --no-startup-id sh -c '~/.screenlayout/defaultsetup.sh && feh --no-fehbg --bg-fill "$HOME/Pictures/image3.png" "$HOME/Pictures/image3.png" && sleep 0.5 && picom --config "$HOME/.config/picom/picom.conf"'
-
-
-
-# ---------- Apps ----------
+# --- Apps ---
 set $term kitty
 set $browser firefox
 set $menu rofi -show drun -show-icons
 
-# ---------- General Behavior ----------
+# Run display setup
+exec_always --no-startup-id ~/.screenlayout/defaultsetup.sh
+
+# Set wallpaper
+exec_always --no-startup-id feh --no-fehbg --bg-fill "$HOME/Pictures/image3.png"
+
+# Picom launching
+
+exec_always --no-startup-id sh -c 'pkill -x picom >/dev/null 2>&1 || true; /usr/bin/picom --backend glx --config "$HOME/.config/picom/picom.conf"'
+
+# --- Window behavior ---O
 focus_follows_mouse no
 mouse_warping none
 workspace_auto_back_and_forth yes
-new_window normal
-new_float normal
-hide_edge_borders both
 
+# Borders around ALL windows (tiling + floating)
+new_window pixel 3
+new_float  pixel 3
+for_window [class=".*"] border pixel 3
+hide_edge_borders none
 
-# ---------- Keybindings ----------
+# --- Colors ---
+# border      background  text     indicator  child_border
+client.focused          #4C7899    #285577    #ffffff  #2e9ef4    #285577
+client.unfocused        #333333    #222222    #888888  #292d2e    #222222
+
+# --- Keybindings ---
 # Apps
 bindsym $mod+Return exec $term
-bindsym $mod+space exec $menu
+bindsym $mod+space  exec $menu
 bindsym $mod+Shift+q kill
 
 # Reload / restart / exit
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
-bindsym $mod+Shift+e exec 'i3-nagbar -t warning -m 'Exit i3?' -b 'Yes' 'i3-msg exit'
 
-# Movement (hjkl style)
+# Focus (hjkl)
+
 bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
@@ -48,9 +60,8 @@ bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
-# Splits
+# Splits / fullscreen
 bindsym $mod+v split v
-
 bindsym $mod+f fullscreen toggle
 
 # Workspaces 1–5
@@ -72,27 +83,25 @@ bindsym $mod+Shift+3 move container to workspace $ws3; workspace $ws3
 bindsym $mod+Shift+4 move container to workspace $ws4; workspace $ws4
 bindsym $mod+Shift+5 move container to workspace $ws5; workspace $ws5
 
-# Resize with arrows
+# Resize mode (hjkl)
 bindsym $mod+r mode "resize"
-
 mode "resize" {
     bindsym h resize shrink width 10 px or 10 ppt
-    bindsym j resize grow height 10 px or 10 ppt
+    bindsym j resize grow   height 10 px or 10 ppt
     bindsym k resize shrink height 10 px or 10 ppt
-    bindsym l resize grow width 10 px or 10 ppt
-
+    bindsym l resize grow   width 10 px or 10 ppt
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
 
-# ---------- System ----------
+# --- System keys ---
 # Volume
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
-bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMute        exec pactl set-sink-mute   @DEFAULT_SINK@ toggle
 
 # Brightness
-bindsym XF86MonBrightnessUp exec brightnessctl set +10%
+bindsym XF86MonBrightnessUp   exec brightnessctl set +10%
 bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
 
 # Media
@@ -100,38 +109,30 @@ bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
-# Borders
-new_window pixel 3
-new_float  pixel 3
-for_window [class=".*"] border pixel 3
-hide_edge_borders none
-
-# Colors
-client.focused          #4C7899 #285577 #ffffff #2e9ef4 #285577
-client.unfocused        #333333 #222222 #888888 #292d2e #222222
-
-
-# Touchpad settings
+# --- Touchpad (may vary by device name) ---
 exec --no-startup-id xinput set-prop "ELAN06FA:00 04F3:3280 Touchpad" "libinput Tapping Enabled" 1
 exec --no-startup-id xinput set-prop "ELAN06FA:00 04F3:3280 Touchpad" "libinput Accel Speed" 0.3
 
-# ---------- Screenshot ----------
+# --- Screenshot ---
 bindsym $mod+Shift+s exec flameshot gui
 
-# ---------- Bar ----------
+# Toggle bar visibility with Win+0
+
+bindsym Mod4+0 bar mode toggle
+
 bar {
     status_command i3blocks
     position top
     height 32
     tray_output none
     separator_symbol " "
-    font pango:JetBrainsMono Nerd Font 15
+    font pango:JetBrainsMono Nerd Font 12
 
     mode hide
     hidden_state hide
     modifier Mod4
 
-colors {
+    colors {
         background #1d1f21
         statusline #ffffff
         separator  #666666
@@ -142,7 +143,5 @@ colors {
         urgent_workspace   #ff0000 #000000 #ff0000
     }
 }
-
-bindsym $mod+0 bar mode toggle
 
 
