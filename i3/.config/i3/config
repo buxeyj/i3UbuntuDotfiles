@@ -17,8 +17,7 @@ exec_always --no-startup-id ~/.screenlayout/defaultsetup.sh
 exec_always --no-startup-id feh --no-fehbg --bg-fill "$HOME/Pictures/image3.png"
 
 # Picom launching
-
-exec_always --no-startup-id sh -c 'pkill -x picom >/dev/null 2>&1 || true; /usr/bin/picom --backend glx --config "$HOME/.config/picom/picom.conf"'
+exec_always --no-startup-id sh -c 'pkill -x picom >/dev/null 2>&1 || true; /usr/bin/picom --config "$HOME/.config/picom/picom.conf"'
 
 # ulauncher loading
 exec --no-startup-id ulauncher --hide-window

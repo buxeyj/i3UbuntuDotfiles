@@ -11,8 +11,6 @@ export XCURSOR_THEME=Adwaita
 # Plugins (assumes you cloned under ~/.zsh/plugins)
 source ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-# Doom path
-export PATH="$HOME/.emacs.d/bin:$PATH"
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
 
