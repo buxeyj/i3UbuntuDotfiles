@@ -4,6 +4,10 @@ HISTFILE=$HOME/.zsh_history
 HISTSIZE=5000
 SAVEHIST=5000
 
+export XCURSOR_SIZE=24
+export XCURSOR_THEME=Adwaita
+
+
 # Plugins (assumes you cloned under ~/.zsh/plugins)
 source ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -39,4 +43,3 @@ fvim_all_widget() {
 zle -N fvim_all_widget
 bindkey '^f' fvim_all_widget
 
-# this is just me in emacs
