@@ -39,3 +39,4 @@ fvim_all_widget() {
 zle -N fvim_all_widget
 bindkey '^f' fvim_all_widget
 
+# this is just me in emacs
