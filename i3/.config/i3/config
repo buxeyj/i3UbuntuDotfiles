@@ -30,7 +30,14 @@ workspace_auto_back_and_forth yes
 
 
 # Borders for all tiled windows
-new_window pixel 4
+new_window pixel 3
+
+# Inner gaps (between windows)
+gaps inner 0
+
+# Outer gaps (between windows and screen edge)
+gaps outer 0
+
 
 # Borders for floating windows (none by default)
 new_float none
@@ -40,9 +47,14 @@ for_window [class="Ulauncher"] border none
 
 
 # --- Colors ---
-# border      background  text     indicator  child_border
-client.focused          #4C7899    #285577    #ffffff  #2e9ef4    #285577
-client.unfocused        #333333    #222222    #888888  #292d2e    #222222
+# Border colors: focused, unfocused, urgent, placeholder
+
+# Format: client.<state> <border> <background> <text> <indicator>
+
+client.focused          #00bfff #00bfff #000000 #00bfff
+client.focused_inactive #333333 #5f676a #ffffff #484e50
+client.unfocused        #333333 #222222 #888888 #292d2e
+client.urgent           #2f343a #900000 #ffffff #900000
 
 # --- Keybindings ---
 # Apps
