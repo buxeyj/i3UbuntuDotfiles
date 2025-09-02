@@ -3,7 +3,9 @@
 # =========================
 
 # --- Core ---
+# Mouse cursor 
 exec --no-startup-id xrdb -merge ~/.Xresources
+
 set $mod Mod1                             
 font pango:JetBrainsMono Nerd Font 11
 
