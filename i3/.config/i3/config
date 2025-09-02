@@ -16,7 +16,7 @@ set $term kitty
 exec_always --no-startup-id ~/.screenlayout/defaultsetup.sh
 
 # Set wallpaper
-exec_always --no-startup-id feh --no-fehbg --bg-fill "$HOME/Pictures/image3.png"
+exec_always --no-startup-id sh -c "sleep 2 && feh --no-fehbg --bg-fill \"$HOME/Pictures/image3.png\""
 
 # Picom launching
 exec_always --no-startup-id sh -c 'pkill -x picom >/dev/null 2>&1 || true; /usr/bin/picom --config "$HOME/.config/picom/picom.conf"'
