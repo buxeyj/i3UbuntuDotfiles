@@ -1,89 +1,76 @@
 # =========================
-# ULTIMATE i3 CONFIG (tidy)
+#  ULTIMATE i3 CONFIG
 # =========================
 
 # --- Core ---
-# Mouse cursor 
-exec --no-startup-id xrdb -merge ~/.Xresources
-
-set $mod Mod1                             
+set $mod Mod1
 font pango:JetBrainsMono Nerd Font 11
 
-# --- Apps ---
+# Merge Xresources for cursor/theme
+exec --no-startup-id xrdb -merge ~/.Xresources
+
+# --- Apps & Startup ---
 set $term kitty
 
-# Run display setup
+# Display setup
 exec_always --no-startup-id ~/.screenlayout/defaultsetup.sh
 
-# Set wallpaper
+# Wallpaper (delay ensures background loads after startup)
 exec_always --no-startup-id sh -c "sleep 2 && feh --no-fehbg --bg-fill \"$HOME/Pictures/image3.png\""
 
-# Picom launching
+# Compositor (Picom)
 exec_always --no-startup-id sh -c 'pkill -x picom >/dev/null 2>&1 || true; /usr/bin/picom --config "$HOME/.config/picom/picom.conf"'
 
-# ulauncher loading
+# Ulauncher (app launcher)
 exec --no-startup-id ulauncher --hide-window
 bindsym $mod+space exec --no-startup-id ulauncher-toggle
 
-# --- Window behavior ---O
+# --- Window Behavior ---
 focus_follows_mouse no
 mouse_warping none
 workspace_auto_back_and_forth yes
 
-
-# Borders for all tiled windows
+# Borders & gaps
 new_window pixel 3
-
-# Inner gaps (between windows)
+new_float none
 gaps inner 0
-
-# Outer gaps (between windows and screen edge)
 gaps outer 0
 
-
-# Borders for floating windows (none by default)
-new_float none
-
-# Exceptions: force some apps to be borderless
+# Exceptions
 for_window [class="Ulauncher"] border none
 
-
 # --- Colors ---
-# Border colors: focused, unfocused, urgent, placeholder
-
 # Format: client.<state> <border> <background> <text> <indicator>
-
 client.focused          #00bfff #00bfff #000000 #00bfff
 client.focused_inactive #333333 #5f676a #ffffff #484e50
 client.unfocused        #333333 #222222 #888888 #292d2e
 client.urgent           #2f343a #900000 #ffffff #900000
 
 # --- Keybindings ---
-# Apps
+## Apps
 bindsym $mod+Return exec $term
 bindsym $mod+Shift+q kill
-
-# / restart / 
 bindsym $mod+Shift+r restart
 
-# Focus (hjkl)
-
+## Focus (hjkl)
 bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
 
-# Move windows
+## Move windows
 bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
-# Splits / fullscreen
-bindsym $mod+v split v
-bindsym $mod+f fullscreen toggle
+# Alternative split keys (no conflicts)
+# beside (horizontal)
+bindsym $mod+i split h  
+# stacked (vertical)
+bindsym $mod+u split v
 
-# Workspaces 1–5
+## Workspaces 1–5
 set $ws1 "1"
 set $ws2 "2"
 set $ws3 "3"
@@ -102,7 +89,7 @@ bindsym $mod+Shift+3 move container to workspace $ws3; workspace $ws3
 bindsym $mod+Shift+4 move container to workspace $ws4; workspace $ws4
 bindsym $mod+Shift+5 move container to workspace $ws5; workspace $ws5
 
-# Resize mode (hjkl)
+## Resize mode (hjkl)
 bindsym $mod+r mode "resize"
 mode "resize" {
     bindsym h resize shrink width 10 px or 10 ppt
@@ -113,30 +100,28 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 
-# --- System keys ---
-# Volume
-bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
-bindsym XF86AudioMute        exec pactl set-sink-mute   @DEFAULT_SINK@ toggle
+# --- System Keys ---
+## Brightness
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl -d intel_backlight set +10%
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl -d intel_backlight set 10%-
 
-# Brightness
-bindsym XF86MonBrightnessUp   exec brightnessctl set +10%
-bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
+## Volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
 
-# Media
+## Media
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
-# --- Touchpad (may vary by device name) ---
+# --- Input devices ---
 exec --no-startup-id xinput set-prop "ELAN06FA:00 04F3:3280 Touchpad" "libinput Tapping Enabled" 1
 exec --no-startup-id xinput set-prop "ELAN06FA:00 04F3:3280 Touchpad" "libinput Accel Speed" 0.3
 
-# --- Screenshot ---
+# --- Screenshots ---
 bindsym $mod+Shift+s exec flameshot gui
 
-# Toggle bar visibility with Win+0
-
+# --- Bar ---
+## Toggle bar with Win+0
 bindsym Mod4+0 bar mode toggle
 
 bar {
@@ -162,5 +147,3 @@ bar {
         urgent_workspace   #ff0000 #000000 #ff0000
     }
 }
-
-
