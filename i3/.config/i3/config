@@ -15,8 +15,11 @@ set $term kitty
 # Display setup
 exec_always --no-startup-id ~/.screenlayout/defaultsetup.sh
 
+# turn on display when disconnected from default setup
+bindsym $mod+d exec --no-startup-id ~/.screenlayout/laptop.sh
+
 # Wallpaper (delay ensures background loads after startup)
-exec_always --no-startup-id sh -c "sleep 2 && feh --no-fehbg --bg-fill \"$HOME/Pictures/image3.png\""
+exec_always --no-startup-id sh -c "sleep 2 && feh --no-fehbg --bg-fill \"$HOME/Pictures/a_man_sitting_in_a_chair.png\""
 
 # Compositor (Picom)
 exec_always --no-startup-id sh -c 'pkill -x picom >/dev/null 2>&1 || true; /usr/bin/picom --config "$HOME/.config/picom/picom.conf"'
@@ -94,10 +97,10 @@ bindsym $mod+Shift+5 move container to workspace $ws5; workspace $ws5
 ## Resize mode (hjkl)
 bindsym $mod+r mode "resize"
 mode "resize" {
-    bindsym h resize shrink width 10 px or 10 ppt
-    bindsym j resize grow   height 10 px or 10 ppt
-    bindsym k resize shrink height 10 px or 10 ppt
-    bindsym l resize grow   width 10 px or 10 ppt
+    bindsym h resize grow   width 10 px or 10 ppt
+    bindsym j resize shrink height 10 px or 10 ppt
+    bindsym k resize grow   height 10 px or 10 ppt
+    bindsym l resize shrink width 10 px or 10 ppt
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
