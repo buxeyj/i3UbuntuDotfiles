@@ -17,6 +17,8 @@ exec_always --no-startup-id ~/.screenlayout/defaultsetup.sh
 
 # turn on display when disconnected from default setup
 bindsym $mod+d exec --no-startup-id ~/.screenlayout/laptop.sh
+# turn screens back on when back in dock mode
+bindsym $mod+Shift+d exec --no-startup-id ~/.screenlayout/defaultsetup.sh
 
 # Wallpaper (delay ensures background loads after startup)
 exec_always --no-startup-id sh -c "sleep 2 && feh --no-fehbg --bg-fill \"$HOME/Pictures/a_man_sitting_in_a_chair.png\""
