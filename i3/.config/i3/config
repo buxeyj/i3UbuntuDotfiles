@@ -28,6 +28,11 @@ exec_always --no-startup-id sh -c 'pkill -x picom >/dev/null 2>&1 || true; /usr/
 exec --no-startup-id ulauncher --hide-window
 bindsym $mod+space exec --no-startup-id ulauncher-toggle
 
+
+# gnome authentication this allows us to change the server when doing updates this is for software-properties-gtk
+# this fixed our issue when doing a super slow apt update 
+
+exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
 # --- Window Behavior ---
 focus_follows_mouse no
 mouse_warping none
